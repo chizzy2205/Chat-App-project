@@ -141,6 +141,7 @@ class _ChatsSectionState extends State<ChatsSection> {
               print(num);
             });
           },
+          ///
           // set curentIndex method to be 0 (int num == 0) under the class _ChatsSectionState extends State<ChatsSection> {
             // then  use the onTap method and set it to  int index onTap: (int index)...and then use the set state to assign num to index to make sure the page interface...
             // ...changes so we can view the settings page
