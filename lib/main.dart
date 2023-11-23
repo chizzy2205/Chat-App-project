@@ -105,33 +105,51 @@ class ChatsSection extends StatefulWidget {
 }
 
 class _ChatsSectionState extends State<ChatsSection> {
+  int num = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("ChatApp"),
       ),
-      body: ListView.builder(
-        itemCount: widget.chatsfrontpage.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-              title: Text(widget.chatsfrontpage[index]),
-              onTap: () {
-                // Handle tapping on a message
-                print('Tapped on Contact: ${widget.chatsfrontpage[index]}');
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          ChatScreen(userName: widget.chatsfrontpage[index]),
-                    ));
-              });
-        },
-      ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(label: "Chats", icon: Icon(Icons.message)),
-        BottomNavigationBarItem(label: "Settings", icon: Icon(Icons.settings))
-      ]),
+      body: num == 0
+      // if num is 0 show the listviewbuilder which is responsible for scrolling ..like in chatting apps
+          ? ListView.builder(
+              itemCount: widget.chatsfrontpage.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                    title: Text(widget.chatsfrontpage[index]),
+                    onTap: () {
+                      // Handle tapping on a message
+                      print(
+                          'Tapped on Contact: ${widget.chatsfrontpage[index]}');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChatScreen(
+                                userName: widget.chatsfrontpage[index]),
+                          ));
+                    });
+              },
+            )
+            // else...show the Settings page
+          : Settings(),
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: (int index) {
+            setState(() {
+              num = index;
+              print(num);
+            });
+          },
+          // set curentIndex method to be 0 (int num == 0) under the class _ChatsSectionState extends State<ChatsSection> {
+            // then  use the onTap method and set it to  int index onTap: (int index)...and then use the set state to assign num to index to make sure the page interface...
+            // ...changes so we can view the settings page
+          currentIndex: num,
+          items: [
+            BottomNavigationBarItem(label: "Chats", icon: Icon(Icons.message)),
+            BottomNavigationBarItem(
+                label: "Settings", icon: Icon(Icons.settings))
+          ]),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(
@@ -249,6 +267,17 @@ class ChatMessage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class Settings extends StatelessWidget {
+  const Settings({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ListView(children: [Text("First Setting")]),
     );
   }
 }
