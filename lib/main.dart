@@ -90,13 +90,13 @@ class ChatsSection extends StatefulWidget {
     "Bestie",
     'AIU',
     'Bowling Green State University',
-    'Pogba',
+    'Koala',
     "Mr Anderson",
     'Aria Montgommery',
     'Royalle Romanillos',
     "Ida Gringio",
     'Dominic Toretto',
-    'Chinsos'
+    'Lance wen Mazo'
   ];
   ChatsSection({Key? key}) : super(key: key);
 
