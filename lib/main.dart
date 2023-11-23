@@ -71,6 +71,7 @@ class _NewChatState extends State<NewChat> {
 
 class ChatsSection extends StatefulWidget {
   final List<String> chatsfrontpage = [
+    'Yusuf Olalere',
     'Lionel Messi',
     "Paul Chido",
     'Mark Zuck',
